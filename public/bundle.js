@@ -26487,7 +26487,7 @@ var Links = function Links(_ref) {
         _react2.default.createElement(
             'a',
             { href: 'mailto:polishchuk.code@gmail.com' },
-            'Email me'
+            'Email me: polishchuk.code@gmail.com'
         ),
         _react2.default.createElement('br', null),
         _react2.default.createElement(
