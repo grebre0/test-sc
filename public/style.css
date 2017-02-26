@@ -2,6 +2,10 @@ body {
     font-family: 'Open Sans'
 }
 
+a {
+    color: green;
+}
+
 .app {
     padding: 100px;
 }

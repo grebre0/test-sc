@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import App from './components/App';
 import store from './store';
-import {fetchArticle} from './actions'; 
+import {fetchArticle} from './actions';
+import {ARTICLE_ID} from './constants/article';
 
-const ARTICLE_ID = '58b2cd11672ee9386578a415';
 store.dispatch(fetchArticle(ARTICLE_ID));
 
 ReactDOM.render(

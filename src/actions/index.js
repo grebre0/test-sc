@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as types from '../constants/actionTypes';
+import {ARTICLE_ID, DEFAULT_TAGS} from '../constants/article'
 
 export const fetchArticle = id => dispatch => {
     dispatch(fetchArticleRequest());
@@ -24,3 +25,7 @@ export const updateArticle = (id, data) => dispatch => {
 export const updateArticleRequest = () => ({type: types.UPDATE_ARTICLE_REQUEST})
 export const updateArticleSuccess = article => ({type: types.UPDATE_ARTICLE_SUCCESS, article})
 export const updateArticleError = errorMessage => ({type: types.UPDATE_ARTICLE_ERROR, errorMessage})
+
+export const resetToDefault = () => {
+
+}

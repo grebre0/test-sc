@@ -7348,7 +7348,7 @@ exports.connect = _connect2.default;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.updateArticleError = exports.updateArticleSuccess = exports.updateArticleRequest = exports.updateArticle = exports.fetchArticleError = exports.fetchArticleSuccess = exports.fetchArticleRequest = exports.fetchArticle = undefined;
+exports.resetToDefault = exports.updateArticleError = exports.updateArticleSuccess = exports.updateArticleRequest = exports.updateArticle = exports.fetchArticleError = exports.fetchArticleSuccess = exports.fetchArticleRequest = exports.fetchArticle = undefined;
 
 var _axios = __webpack_require__(105);
 
@@ -7357,6 +7357,8 @@ var _axios2 = _interopRequireDefault(_axios);
 var _actionTypes = __webpack_require__(101);
 
 var types = _interopRequireWildcard(_actionTypes);
+
+var _article = __webpack_require__(253);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -7405,6 +7407,8 @@ var updateArticleSuccess = exports.updateArticleSuccess = function updateArticle
 var updateArticleError = exports.updateArticleError = function updateArticleError(errorMessage) {
     return { type: types.UPDATE_ARTICLE_ERROR, errorMessage: errorMessage };
 };
+
+var resetToDefault = exports.resetToDefault = function resetToDefault() {};
 
 /***/ }),
 /* 60 */
@@ -11294,27 +11298,19 @@ var _ArticleContainer = __webpack_require__(248);
 
 var _ArticleContainer2 = _interopRequireDefault(_ArticleContainer);
 
+var _LinksContainer = __webpack_require__(255);
+
+var _LinksContainer2 = _interopRequireDefault(_LinksContainer);
+
+var _actions = __webpack_require__(59);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
     return _react2.default.createElement(
         'div',
         { className: 'app' },
-        _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-                'a',
-                { href: 'https://github.com/grebre0/test-sc', target: '_blank' },
-                'Source on github'
-            ),
-            _react2.default.createElement('br', null),
-            _react2.default.createElement(
-                'a',
-                { href: 'mailto:polishchuk.code@gmail.com' },
-                'polishchuk.code@gmail.com'
-            )
-        ),
+        _react2.default.createElement(_LinksContainer2.default, null),
         _react2.default.createElement(_ArticleContainer2.default, null)
     );
 };
@@ -26438,16 +26434,120 @@ var _store2 = _interopRequireDefault(_store);
 
 var _actions = __webpack_require__(59);
 
+var _article = __webpack_require__(253);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ARTICLE_ID = '58b2cd11672ee9386578a415';
-_store2.default.dispatch((0, _actions.fetchArticle)(ARTICLE_ID));
+_store2.default.dispatch((0, _actions.fetchArticle)(_article.ARTICLE_ID));
 
 _reactDom2.default.render(_react2.default.createElement(
     _reactRedux.Provider,
     { store: _store2.default },
     _react2.default.createElement(_App2.default, null)
 ), document.getElementById('root'));
+
+/***/ }),
+/* 253 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var ARTICLE_ID = exports.ARTICLE_ID = '58b2cd11672ee9386578a415';
+var DEFAULT_TAGS = exports.DEFAULT_TAGS = ['lorem', 'ipsum'];
+
+/***/ }),
+/* 254 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(15);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _article = __webpack_require__(253);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Links = function Links(_ref) {
+    var updateArticle = _ref.updateArticle;
+
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            'a',
+            { href: 'mailto:polishchuk.code@gmail.com' },
+            'Email me'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+            'a',
+            { href: 'https://github.com/grebre0/test-sc', target: '_blank' },
+            'Source on github'
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+            'a',
+            { href: '', onClick: function onClick() {
+                    updateArticle(_article.ARTICLE_ID, { tags: _article.DEFAULT_TAGS });
+                } },
+            'Reset to default tags'
+        )
+    );
+};
+
+Links.propTypes = {
+    updateArticle: _react.PropTypes.func.isRequired
+};
+
+exports.default = Links;
+
+/***/ }),
+/* 255 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _reactRedux = __webpack_require__(58);
+
+var _Links = __webpack_require__(254);
+
+var _Links2 = _interopRequireDefault(_Links);
+
+var _actions = __webpack_require__(59);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+    return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return {
+        updateArticle: function updateArticle(id, data) {
+            dispatch((0, _actions.updateArticle)(id, data));
+        }
+    };
+};
+
+var LinksContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Links2.default);
+
+exports.default = LinksContainer;
 
 /***/ })
 /******/ ]);
