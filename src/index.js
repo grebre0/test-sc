@@ -5,7 +5,7 @@ import App from './components/App';
 import store from './store';
 import {fetchArticle} from './actions'; 
 
-const ARTICLE_ID = "58b17d496d32f99ee24231e3";
+const ARTICLE_ID = '58b2cd11672ee9386578a415';
 store.dispatch(fetchArticle(ARTICLE_ID));
 
 ReactDOM.render(

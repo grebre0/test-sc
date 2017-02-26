@@ -26411,7 +26411,7 @@ var _actions = __webpack_require__(59);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ARTICLE_ID = "58b17d496d32f99ee24231e3";
+var ARTICLE_ID = '58b2cd11672ee9386578a415';
 _store2.default.dispatch((0, _actions.fetchArticle)(ARTICLE_ID));
 
 _reactDom2.default.render(_react2.default.createElement(
