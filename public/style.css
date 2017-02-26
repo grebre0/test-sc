@@ -1,0 +1,38 @@
+body {
+    font-family: 'Open Sans'
+}
+
+.app {
+    padding: 100px;
+}
+
+.article {
+    position: relative;
+}
+
+.text {
+    position: relative;
+}
+
+.tag {
+    background-color: rgba(65, 103, 136, 0.3);
+}
+
+.selection {
+    background-color: yellow;
+}
+
+.plus {
+    position: absolute;
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    background-color: lawngreen;
+    border: none;
+    cursor: pointer;
+    transform: translate(5px, 1px);
+    font-size: 18px;
+    border-radius: 4px;
+}
