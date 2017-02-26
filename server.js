@@ -1,4 +1,3 @@
-// get environment variables
 require('dotenv').config();
 
 // get dependencies
@@ -8,12 +7,13 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var articlesRoutes = require('./server/routes/articles');
 var PORT = process.env.PORT || 3000;
+var DB_URI = process.env.DB_URI || 'localhost/sc-test';
 
 // init app
 var app = express();
 
 // connect to db
-mongoose.connect(process.env.DB_URI);
+mongoose.connect(DB_URI);
 
 // set middleware
 app.use(express.static(path.join(__dirname, 'public')));

@@ -68,11 +68,25 @@ class Article extends React.Component {
             <div 
                 className="article"
                 ref={(node) => {this.wrapperNode = node}}>
+
+                {/* error */}
+                {!!this.props.errorMessage && (
+                    <div className="error">{this.props.errorMessage}</div>
+                )}
+
+                {/* loader */}
+                {!!this.props.isFetching && (
+                    <div className="loader">Loading...</div>
+                )}
+
+                {/* text */}
                 <div
                     className="text"
                     onMouseUp={this.handleMouseUp}
                     ref={(node) => {this.textNode = node}}
                     dangerouslySetInnerHTML={{__html: this.state.text || this.props.text}}></div>
+
+                {/* Plus */}
                 {!!this.state.selection.length && (
                     <Plus 
                         position={this.state.plusPosition}
@@ -88,7 +102,9 @@ Article.propTypes = {
     id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     tags: PropTypes.array.isRequired,
-    updateArticle: PropTypes.func.isRequired
+    updateArticle: PropTypes.func.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    errorMessage: PropTypes.string.isRequired
 };
 
 export default Article;

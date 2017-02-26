@@ -6,7 +6,9 @@ const mapStateToProps = (state) => {
     return {
         id: state.article._id,
         text: state.article.text,
-        tags: state.article.tags
+        tags: state.article.tags,
+        isFetching: state.isFetching,
+        errorMessage: state.errorMessage
     }
 };
 

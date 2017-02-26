@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as types from '../constants/actionTypes';
 
 export const fetchArticle = id => dispatch => {
-    dispatch(fetchArticleRequest);
+    dispatch(fetchArticleRequest());
 
     axios.get(`/articles/${id}`)
          .then(response => dispatch(fetchArticleSuccess(response)))

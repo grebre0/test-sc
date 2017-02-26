@@ -7364,7 +7364,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var fetchArticle = exports.fetchArticle = function fetchArticle(id) {
     return function (dispatch) {
-        dispatch(fetchArticleRequest);
+        dispatch(fetchArticleRequest());
 
         _axios2.default.get('/articles/' + id).then(function (response) {
             return dispatch(fetchArticleSuccess(response));
@@ -11300,6 +11300,21 @@ var App = function App() {
     return _react2.default.createElement(
         'div',
         { className: 'app' },
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'a',
+                { href: 'https://github.com/grebre0/test-sc', target: '_blank' },
+                'Source on github'
+            ),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement(
+                'a',
+                { href: 'mailto:polishchuk.code@gmail.com' },
+                'polishchuk.code@gmail.com'
+            )
+        ),
         _react2.default.createElement(_ArticleContainer2.default, null)
     );
 };
@@ -26011,6 +26026,16 @@ var Article = function (_React$Component) {
                     ref: function ref(node) {
                         _this2.wrapperNode = node;
                     } },
+                !!this.props.errorMessage && _react2.default.createElement(
+                    'div',
+                    { className: 'error' },
+                    this.props.errorMessage
+                ),
+                !!this.props.isFetching && _react2.default.createElement(
+                    'div',
+                    { className: 'loader' },
+                    'Loading...'
+                ),
                 _react2.default.createElement('div', {
                     className: 'text',
                     onMouseUp: this.handleMouseUp,
@@ -26035,7 +26060,9 @@ Article.propTypes = {
     id: _react.PropTypes.string.isRequired,
     text: _react.PropTypes.string.isRequired,
     tags: _react.PropTypes.array.isRequired,
-    updateArticle: _react.PropTypes.func.isRequired
+    updateArticle: _react.PropTypes.func.isRequired,
+    isFetching: _react.PropTypes.bool.isRequired,
+    errorMessage: _react.PropTypes.string.isRequired
 };
 
 exports.default = Article;
@@ -26109,7 +26136,9 @@ var mapStateToProps = function mapStateToProps(state) {
     return {
         id: state.article._id,
         text: state.article.text,
-        tags: state.article.tags
+        tags: state.article.tags,
+        isFetching: state.isFetching,
+        errorMessage: state.errorMessage
     };
 };
 
